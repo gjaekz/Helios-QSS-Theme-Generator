@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helios II Theme Generator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="blobs">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+    </div>
+    <canvas id="bg"></canvas>
+    <div class="hero">
+      <h1 class="main-title gradient-text">Helios Theme Generator</h1>
+      <p class="subtitle hero-subtitle">Create and export custom UI themes for Helios II</p>
+    </div>
+
+    <div class="tool-container">
+      <div class="tool-card">
+        <div class="tool-layout">
+          <aside class="sidebar">
+            <div class="sidebar-header">
+              <button id="download" class="download-btn" type="button">Download</button>
+            </div>
+
+            <div class="controls">
+          <section class="section setup">
+            <h4>Theme Setup</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="themeName">Name</label>
+                <input type="text" id="themeName" placeholder="My Theme" />
+              </div>
+              <div class="card">
+                <label for="qssUpload">Import</label>
+                <input id="qssUpload" type="file" accept=".qss" />
+              </div>
+              <div class="card full">
+                <label>Presets</label>
+                <div class="preset-grid">
+                  <button class="preset" data-preset="dark" type="button">Dark</button>
+                  <button class="preset" data-preset="neon" type="button">Neon</button>
+                  <button class="preset" data-preset="light" type="button">Light</button>
+                </div>
+              </div>
+              <div class="card full">
+                <label>Actions</label>
+                <button id="resetTheme" type="button">Reset</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="section workflow">
+            <h4>Workflow</h4>
+            <div class="section-controls">
+              <div class="card full">
+                <label>Customize Step</label>
+                <div class="step-tabs">
+                  <button class="step-tab active" data-step="base" type="button">Base</button>
+                  <button class="step-tab" data-step="layout" type="button">Layout</button>
+                  <button class="step-tab" data-step="components" type="button">Components</button>
+                  <button class="step-tab" data-step="details" type="button">Details</button>
+                </div>
+              </div>
+              <div class="card full">
+                <label class="toggle-label" for="advancedMode">
+                  <span>Advanced Mode</span>
+                  <input id="advancedMode" type="checkbox" />
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section class="section base" data-step-group="base">
+            <h4>Main Layout</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="app_bg">App Background</label>
+                <input id="app_bg" type="color" data-key="app_bg" />
+              </div>
+              <div class="card">
+                <label for="panel_bg">Panel Background</label>
+                <input id="panel_bg" type="color" data-key="panel_bg" />
+              </div>
+              <div class="card full">
+                <label for="panel_inner">Inner Panel</label>
+                <input id="panel_inner" type="color" data-key="panel_inner" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section import" data-step-group="layout">
+            <h4>Top Bar</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="menu_bg">Menu Background</label>
+                <input id="menu_bg" type="color" data-key="menu_bg" />
+              </div>
+              <div class="card">
+                <label for="menu_text">Menu Text</label>
+                <input id="menu_text" type="color" data-key="menu_text" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section accent" data-step-group="layout">
+            <h4>Left Panel</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="left_bg">Background</label>
+                <input id="left_bg" type="color" data-key="left_bg" />
+              </div>
+              <div class="card">
+                <label for="left_section_bg">Section Background</label>
+                <input id="left_section_bg" type="color" data-key="left_section_bg" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section text" data-step-group="layout">
+            <h4>Right Panel</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="right_bg">Background</label>
+                <input id="right_bg" type="color" data-key="right_bg" />
+              </div>
+              <div class="card">
+                <label for="right_card_bg">Card Background</label>
+                <input id="right_card_bg" type="color" data-key="right_card_bg" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section borders" data-step-group="components">
+            <h4>Tabs</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="tab_bg">Tab Background</label>
+                <input id="tab_bg" type="color" data-key="tab_bg" />
+              </div>
+              <div class="card">
+                <label for="tab_active">Active Tab</label>
+                <input id="tab_active" type="color" data-key="tab_active" />
+              </div>
+              <div class="card full">
+                <label for="tab_text">Tab Text</label>
+                <input id="tab_text" type="color" data-key="tab_text" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section theme" data-step-group="components">
+            <h4>Inputs</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="input_bg">Background</label>
+                <input id="input_bg" type="color" data-key="input_bg" />
+              </div>
+              <div class="card">
+                <label for="input_border">Border</label>
+                <input id="input_border" type="color" data-key="input_border" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section presets" data-step-group="components">
+            <h4>Buttons</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="button_bg">Button</label>
+                <input id="button_bg" type="color" data-key="button_bg" />
+              </div>
+              <div class="card">
+                <label for="button_hover">Hover</label>
+                <input id="button_hover" type="color" data-key="button_hover" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section base" data-step-group="base">
+            <h4>Text</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="text_primary">Primary</label>
+                <input id="text_primary" type="color" data-key="text_primary" />
+              </div>
+              <div class="card">
+                <label for="text_secondary">Secondary</label>
+                <input id="text_secondary" type="color" data-key="text_secondary" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section accent" data-step-group="details">
+            <h4>Status</h4>
+            <div class="section-controls">
+              <div class="card">
+                <label for="success">Success</label>
+                <input id="success" type="color" data-key="success" />
+              </div>
+              <div class="card">
+                <label for="error">Error</label>
+                <input id="error" type="color" data-key="error" />
+              </div>
+            </div>
+          </section>
+
+          <section class="section text" data-step-group="details">
+            <h4>Accent</h4>
+            <div class="section-controls">
+              <div class="card full">
+                <label for="accent">Accent</label>
+                <input id="accent" type="color" data-key="accent" />
+              </div>
+            </div>
+          </section>
+            </div>
+          </aside>
+
+          <main class="preview">
+            <div class="workspace" id="preview">
+              <div class="workspace-inner">
+                <div class="workspace-header">
+                  <h2>Theme Preview</h2>
+                </div>
+
+                <section class="preview-card">
+            <div class="helios-app">
+              <div class="menu-bar">
+                <span>Helios II</span>
+                <div class="menu-items">
+                  <span>File</span>
+                  <span>View</span>
+                  <span>Plugins</span>
+                  <span>Tools</span>
+                  <span>Help</span>
+                </div>
+              </div>
+
+              <div class="helios-body">
+                <div class="left-panel">
+                  <div class="section-block">
+                    <label>Capture Source</label>
+                    <div class="input">Video Test</div>
+                  </div>
+
+                  <div class="section-block">
+                    <label>Settings</label>
+                    <div class="input">60 FPS</div>
+                    <div class="input">1080p</div>
+                  </div>
+
+                  <button class="btn" type="button">Start Capture</button>
+                </div>
+
+                <div class="center-panel">
+                  <div class="tabs">
+                    <div class="tab active">Video Display</div>
+                    <div class="tab">Device Monitor</div>
+                    <div class="tab">Online Resources</div>
+                  </div>
+
+                  <div class="display-area"></div>
+                </div>
+
+                <div class="right-panel">
+                  <div class="card preview-card-block">
+                    <label>Titan Two Device</label>
+                    <div class="input">No device</div>
+                  </div>
+
+                  <div class="card preview-card-block">
+                    <label>Memory Slots</label>
+                    <div class="slot">1 Empty</div>
+                    <div class="slot">2 Empty</div>
+                    <div class="slot">3 Empty</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                </section>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <div id="toast">Theme Exported ✅</div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
