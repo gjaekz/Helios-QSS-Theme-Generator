@@ -2765,7 +2765,9 @@ qssUpload.addEventListener("change", (event) => {
   reader.readAsText(file);
 });
 
-resetButton.onclick = resetThemeState;
+if (resetButton) {
+  resetButton.onclick = resetThemeState;
+}
 if (quickResetButton) {
   quickResetButton.onclick = resetThemeState;
 }
