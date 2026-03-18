@@ -813,6 +813,9 @@ function applyPreset(presetName) {
   }
 
   Object.assign(theme, preset);
+  document.querySelectorAll(".preset").forEach((button) => {
+    button.classList.toggle("active", button.dataset.preset === presetName);
+  });
   updateInputs();
   applyTheme();
 }
@@ -1207,8 +1210,24 @@ startCreatingButton?.addEventListener("click", () => {
   window.scrollTo({ top: y, behavior: "smooth" });
 });
 
+if (generatorSection) {
+  const generatorObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        generatorSection.classList.add("visible");
+      }
+    },
+    { threshold: 0.2 }
+  );
+
+  generatorObserver.observe(generatorSection);
+}
+
 themeNameInput.value = "custom-theme";
 loadDefaultTheme();
+document.querySelectorAll(".preset").forEach((button) => {
+  button.classList.toggle("active", button.dataset.preset === "dark");
+});
 resizeCanvas();
 createParticles();
 drawParticles();
